@@ -24,6 +24,13 @@
         }];
 
     [Parse initializeWithConfiguration:config];
+
+//    // check if user is logged in
+//    if (PFUser.currentUser) {
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        // view controller currently being set in Storyboard as default will be overridden
+//        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
+//    }
     
     return YES;
 }
