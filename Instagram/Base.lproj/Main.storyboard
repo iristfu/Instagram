@@ -74,7 +74,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -134,21 +134,32 @@
             </objects>
             <point key="canvasLocation" x="18.840579710144929" y="78.348214285714278"/>
         </scene>
-        <!--Item 2-->
+        <!--Home Feed View Controller-->
         <scene sceneID="jJk-sT-fiQ">
             <objects>
-                <viewController id="iIc-Dn-crg" sceneMemberID="viewController">
+                <viewController id="iIc-Dn-crg" customClass="HomeFeedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZXC-MG-Ooo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drL-7e-gA1">
+                                <rect key="frame" x="20" y="20" width="103" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Logout"/>
+                                <connections>
+                                    <action selector="tappedLogout:" destination="iIc-Dn-crg" eventType="touchUpInside" id="gI8-8I-jAd"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="H62-NI-D68"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="p6p-PL-O8N"/>
+                    <tabBarItem key="tabBarItem" title="" image="feed_tab" id="p6p-PL-O8N"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kUd-4D-7VR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-988" y="1517"/>
+            <point key="canvasLocation" x="-988.40579710144937" y="1516.7410714285713"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="W4B-C7-Tvq">
@@ -169,7 +180,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="7lE-E6-8Se">
             <objects>
-                <tabBarController id="nNi-Jr-vQO" customClass="TabBarController" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="nNi-Jr-vQO" customClass="TabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="N0S-VC-cZC"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UMn-jn-gKR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -190,6 +201,7 @@
         <segue reference="lyJ-Km-cFN"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="feed_tab" width="25" height="25"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
