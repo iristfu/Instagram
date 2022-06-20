@@ -98,6 +98,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Login"/>
+                                <connections>
+                                    <action selector="tappedLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0HK-Pk-hF8"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Don't have an account?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lzN-k3-Hip">
                                 <rect key="frame" x="79" y="552" width="240" height="33"/>
@@ -122,6 +125,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="PCZ-WH-PsB"/>
                     <connections>
+                        <outlet property="password" destination="2JT-Xc-ao7" id="8ez-kS-Y9Q"/>
+                        <outlet property="username" destination="ptS-YS-snw" id="S8m-8n-cSQ"/>
                         <segue destination="nNi-Jr-vQO" kind="show" identifier="LoggedInSegue" id="2XF-Ni-1hx"/>
                     </connections>
                 </viewController>
