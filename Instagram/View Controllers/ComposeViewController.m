@@ -6,6 +6,7 @@
 //
 
 #import "ComposeViewController.h"
+#import "Post.h"
 
 @interface ComposeViewController ()
 - (IBAction)didTapCancel:(id)sender;
@@ -55,7 +56,29 @@
 }
 
 - (void)sharePost {
+    CGSize size = CGSizeMake(300, 300);
+    UIImage *resizedPostImage = [self resizeImage:self.postImage.image withSize:size];
+    [Post postUserImage:resizedPostImage withCaption:self.postCaption.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            NSLog(@"Successfully posted an image!");
+        } else {
+            NSLog(@"Error posting an image");
+        }
+    }];
+}
+
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
+    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizeImageView.image = image;
+    
+    UIGraphicsBeginImageContext(size);
+    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 /*
