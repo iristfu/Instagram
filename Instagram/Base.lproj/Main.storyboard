@@ -173,7 +173,7 @@
             </objects>
             <point key="canvasLocation" x="381" y="78"/>
         </scene>
-        <!--Home Feed View Controller-->
+        <!--Home Feed-->
         <scene sceneID="jJk-sT-fiQ">
             <objects>
                 <viewController id="iIc-Dn-crg" customClass="HomeFeedViewController" sceneMemberID="viewController">
@@ -184,10 +184,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="feed_tab" id="p6p-PL-O8N"/>
-                    <navigationItem key="navigationItem" id="gva-ZT-fUd">
+                    <navigationItem key="navigationItem" title="Home Feed" id="gva-ZT-fUd">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="5fo-nj-UaO">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="drL-7e-gA1">
-                                <rect key="frame" x="16" y="12.666666666666664" width="103" height="31"/>
+                                <rect key="frame" x="16" y="11" width="103" height="34.333333333333336"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Logout"/>
@@ -196,40 +196,77 @@
                                 </connections>
                             </button>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="insta_camera_btn" id="SqL-VU-LXH">
+                            <connections>
+                                <segue destination="Wzb-V3-Ytx" kind="presentation" identifier="ComposeSegue" id="IXC-vL-Bm1"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kUd-4D-7VR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1183" y="2330"/>
+            <point key="canvasLocation" x="-1183" y="2288"/>
         </scene>
-        <!--Root View Controller-->
-        <scene sceneID="d1W-lf-MIA">
+        <!--Navigation Controller-->
+        <scene sceneID="7Wl-Oc-lzu">
             <objects>
-                <tableViewController id="eRS-7o-1te" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="IYJ-CB-tNu">
+                <navigationController id="Wzb-V3-Ytx" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fo3-g8-dTU">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Kya-Xa-0cH" kind="relationship" relationship="rootViewController" id="itf-hx-Fw5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Qy-yy-O5S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1183" y="3036"/>
+        </scene>
+        <!--Compose View Controller-->
+        <scene sceneID="EEj-Pc-mEc">
+            <objects>
+                <viewController id="Kya-Xa-0cH" customClass="ComposeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Aan-xa-A6D">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="16g-vC-oUA">
+                                <rect key="frame" x="15" y="66" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Cry-Nd-5Je"/>
+                                    <constraint firstAttribute="width" secondItem="16g-vC-oUA" secondAttribute="height" multiplier="1:1" id="x1w-Us-C5D"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write a caption..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xz7-RN-rPf">
+                                <rect key="frame" x="185" y="66" width="190" height="175"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="i1S-yQ-zek"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Ozu-2n-brw">
-                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.666667938232422"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ozu-2n-brw" id="YYn-PC-JQG">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="eRS-7o-1te" id="DcG-6Z-BBg"/>
-                            <outlet property="delegate" destination="eRS-7o-1te" id="4U0-qm-Cqb"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="dNp-BN-kQT"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vAg-Qi-AMc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="xz7-RN-rPf" firstAttribute="leading" secondItem="16g-vC-oUA" secondAttribute="trailing" constant="20" id="1ic-bH-vii"/>
+                            <constraint firstItem="xz7-RN-rPf" firstAttribute="top" secondItem="16g-vC-oUA" secondAttribute="top" id="3e1-Ut-3QP"/>
+                            <constraint firstItem="i1S-yQ-zek" firstAttribute="bottom" secondItem="xz7-RN-rPf" secondAttribute="bottom" constant="500" id="QsC-ow-DaK"/>
+                            <constraint firstItem="16g-vC-oUA" firstAttribute="leading" secondItem="i1S-yQ-zek" secondAttribute="leading" constant="15" id="h9m-aU-E7E"/>
+                            <constraint firstItem="16g-vC-oUA" firstAttribute="top" secondItem="i1S-yQ-zek" secondAttribute="top" constant="10" id="o7L-IU-X0O"/>
+                            <constraint firstItem="i1S-yQ-zek" firstAttribute="trailing" secondItem="xz7-RN-rPf" secondAttribute="trailing" constant="15" id="qTq-Bc-vx9"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="oyB-l6-xE0">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="cjL-Xw-FWe"/>
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="CjC-n0-SZ4"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uGn-9R-Obm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1268" y="2330"/>
+            <point key="canvasLocation" x="-223.07692307692307" y="3035.5450236966822"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eyi-Pv-KTi">
@@ -241,12 +278,28 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="eRS-7o-1te" kind="relationship" relationship="rootViewController" id="INC-hd-4Tl"/>
+                        <segue destination="p4i-Bu-co0" kind="relationship" relationship="rootViewController" id="8bg-hv-mXC"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oiq-ja-dC5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1269" y="1514"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="PPb-u1-my1">
+            <objects>
+                <viewController id="p4i-Bu-co0" customClass="ProfileViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aj7-Gl-SdI">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="jEz-q5-PAj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Hl2-QJ-0Pj"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OMO-66-9j0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1268" y="2288"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Tbt-83-1AA">
@@ -290,6 +343,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="feed_tab" width="25" height="25"/>
+        <image name="insta_camera_btn" width="25" height="25"/>
         <image name="profile_tab" width="25" height="25"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
