@@ -8,6 +8,11 @@
 #import "ComposeViewController.h"
 
 @interface ComposeViewController ()
+- (IBAction)didTapCancel:(id)sender;
+- (IBAction)didTapShare:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextView *postCaption;
+@property (weak, nonatomic) IBOutlet UIImageView *postImage;
+- (IBAction)didTapImage:(id)sender;
 
 @end
 
@@ -28,4 +33,14 @@
 }
 */
 
+- (IBAction)didTapShare:(id)sender {
+}
+
+- (IBAction)didTapCancel:(id)sender {
+}
+
+- (IBAction)cancelButton:(id)sender {
+}
+- (IBAction)didTapImage:(id)sender {
+}
 @end
