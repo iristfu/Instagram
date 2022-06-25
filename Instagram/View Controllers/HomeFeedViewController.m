@@ -10,17 +10,88 @@
 #import "SceneDelegate.h"
 #import "LoginViewController.h"
 #import "Parse/Parse.h"
+#import "Post.h"
 
-@interface HomeFeedViewController ()
+@interface HomeFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 - (IBAction)tappedLogout:(id)sender;
+@property (weak, nonatomic) IBOutlet UITableView *homeFeedTableView;
+@property (strong, nonatomic) NSMutableArray *postsOnFeed;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
 @implementation HomeFeedViewController
 
+- (void)fetchPosts {
+    // construct query
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query orderByDescending:@"createdAt"];
+    [query includeKey:@"author"];
+    query.limit = 20;
+
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            [self.postsOnFeed removeAllObjects];
+            for (PFObject *post in posts) {
+                [self.postsOnFeed addObject:post];
+            }
+            [self.refreshControl endRefreshing];
+            [self.homeFeedTableView reloadData];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    [self.refreshControl endRefreshing];
+    [self.homeFeedTableView reloadData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    // Initialize a UIRefreshControl
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
+    [self.homeFeedTableView insertSubview:self.refreshControl atIndex:0];
+    
+    self.homeFeedTableView.delegate = self;
+    self.homeFeedTableView.dataSource = self;
+    self.homeFeedTableView.rowHeight = UITableViewAutomaticDimension;
+
+    [self fetchPosts];
+}
+
+-(void)scrollViewDidScroll: (UIScrollView*)scrollView {
+    float scrollViewHeight = scrollView.frame.size.height;
+    float scrollContentSizeHeight = scrollView.contentSize.height;
+    float scrollOffset = scrollView.contentOffset.y;
+
+    if (scrollOffset + scrollViewHeight == scrollContentSizeHeight) { // at the bottom of the scrollview
+        [self loadMorePosts];
+    }
+}
+
+-(void)loadMorePosts{
+    Post *lastPost = [self.postsOnFeed lastObject];
+    
+    // construct query
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query whereKey:@"createdAt" lessThan:lastPost[@"createdAt"]]; // get older posts
+    [query orderByDescending:@"createdAt"];
+    [query includeKey:@"author"];
+    query.limit = 20;
+
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *morePosts, NSError *error) {
+        if (morePosts != nil) {
+            for (PFObject *post in morePosts) {
+                [self.postsOnFeed addObject:post];
+            }
+            [self.homeFeedTableView reloadData];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 /*
@@ -45,6 +116,14 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     HomeFeedViewController *homeFeedViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     myDelegate.window.rootViewController = homeFeedViewController;
+}
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    <#code#>
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.postsOnFeed.count;
 }
 
 @end
