@@ -13,7 +13,8 @@
 - (IBAction)didTapShare:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextView *postCaption;
 @property (weak, nonatomic) IBOutlet UIImageView *postImage;
-- (IBAction)didTapImage:(id)sender;
+- (IBAction)didTapImage:(UITapGestureRecognizer *)sender;
+
 
 @end
 
@@ -21,9 +22,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // setup gesture recognizer
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImage:)];
+    tapGestureRecognizer.numberOfTapsRequired = 1;
+    
+    [self.view setUserInteractionEnabled:YES];
+    [self.view addGestureRecognizer:tapGestureRecognizer];
 }
 
 -(void)renderImagePicker {
+    NSLog(@"renderImagePicker method called");
     // set up image picker
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
@@ -92,15 +101,21 @@
 */
 
 - (IBAction)didTapShare:(id)sender {
+    NSLog(@"didTapShare action triggered");
     [self sharePost];
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (IBAction)didTapCancel:(id)sender {
+    NSLog(@"didTapCancel action triggered");
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
-- (IBAction)didTapImage:(id)sender {
+
+- (IBAction)didTapImage:(UITapGestureRecognizer *)sender {
+    CGPoint location = [sender locationInView:self.view];
+    NSLog(@"didTapImage action triggered");
     [self renderImagePicker];
 }
+
 @end

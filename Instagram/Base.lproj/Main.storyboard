@@ -239,7 +239,7 @@
                                     <constraint firstAttribute="width" secondItem="16g-vC-oUA" secondAttribute="height" multiplier="1:1" id="x1w-Us-C5D"/>
                                 </constraints>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="fzo-Ud-2ys" appends="YES" id="Mxh-HL-7I7"/>
+                                    <outletCollection property="gestureRecognizers" destination="NZA-ZT-PTB" appends="YES" id="VFf-T3-dUp"/>
                                 </connections>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write a caption..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xz7-RN-rPf">
@@ -281,9 +281,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uGn-9R-Obm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="fzo-Ud-2ys">
+                <tapGestureRecognizer id="NZA-ZT-PTB">
                     <connections>
-                        <action selector="didTapImage:" destination="Kya-Xa-0cH" id="xaa-JC-2Xd"/>
+                        <action selector="didTapImage:" destination="Kya-Xa-0cH" id="fke-Ve-xnv"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
