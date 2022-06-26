@@ -11,6 +11,7 @@
 #import "LoginViewController.h"
 #import "Parse/Parse.h"
 #import "Post.h"
+#import "PostCell.h"
 
 @interface HomeFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 - (IBAction)tappedLogout:(id)sender;
@@ -23,6 +24,7 @@
 @implementation HomeFeedViewController
 
 - (void)fetchPosts {
+    NSLog(@"fetch post called");
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"createdAt"];
@@ -119,7 +121,23 @@
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    <#code#>
+    Post *post = self.postsOnFeed[indexPath.row];
+    PostCell *postCell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
+    postCell.post = post;
+    
+    postCell.postCaption.text = post[@"caption"];
+    postCell.username.text = post[@"author"][@"username"];
+    postCell.postImage.file = post[@"image"];
+    [postCell.postImage loadInBackground];
+    postCell.profilePicture.layer.cornerRadius = postCell.profilePicture.frame.size.width/2;
+    if(post[@"author"][@"profilePicture"]) {
+        postCell.profilePicture.file = post[@"author"][@"profilePicture"];
+        [postCell.profilePicture loadInBackground];
+    } else {
+        UIImage *placeHolderImage = [UIImage imageNamed:@"image_placeholder"];
+        [postCell.profilePicture setImage:placeHolderImage];
+    }
+    return postCell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

@@ -20,4 +20,20 @@
     // Configure the view for the selected state
 }
 
+- (void)setPost:(Post *)post {
+    _post = post;
+    self.postCaption.text = post[@"caption"];
+    self.username.text = post[@"author"][@"username"];
+    self.postImage.file = post[@"image"];
+    [self.postImage loadInBackground];
+    self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width/2;
+    if(post[@"author"][@"profilePicture"]) {
+        self.profilePicture.file = post[@"author"][@"profilePicture"];
+        [self.profilePicture loadInBackground];
+    } else {
+        UIImage *placeHolderImage = [UIImage imageNamed:@"image_placeholder"];
+        [self.profilePicture setImage:placeHolderImage];
+    }
+}
+
 @end
