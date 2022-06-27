@@ -25,6 +25,7 @@
     self.postCaption.text = post[@"caption"];
     self.username.text = post[@"author"][@"username"];
     self.postImage.file = post[@"image"];
+    NSLog(@"Setting the post image file %@", post[@"image"]);
     [self.postImage loadInBackground];
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width/2;
     if(post[@"author"][@"profilePicture"]) {
@@ -34,6 +35,7 @@
         UIImage *placeHolderImage = [UIImage imageNamed:@"image_placeholder"];
         [self.profilePicture setImage:placeHolderImage];
     }
+    self.likesCount.text = [NSString stringWithFormat:@"%@ likes", post[@"likeCount"]];
 }
 
 @end
