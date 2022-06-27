@@ -34,8 +34,10 @@
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
+            NSLog(@"This is what we got from the query: %@", posts);
             [self.postsOnFeed removeAllObjects];
             for (PFObject *post in posts) {
+                NSLog(@"Got post %@", post);
                 [self.postsOnFeed addObject:post];
             }
             [self.refreshControl endRefreshing];
@@ -60,6 +62,7 @@
     self.homeFeedTableView.dataSource = self;
     self.homeFeedTableView.rowHeight = UITableViewAutomaticDimension;
 
+    self.postsOnFeed = [[NSMutableArray alloc] init];
     [self fetchPosts];
 }
 
@@ -124,19 +127,19 @@
     Post *post = self.postsOnFeed[indexPath.row];
     PostCell *postCell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
     postCell.post = post;
-    
-    postCell.postCaption.text = post[@"caption"];
-    postCell.username.text = post[@"author"][@"username"];
-    postCell.postImage.file = post[@"image"];
-    [postCell.postImage loadInBackground];
-    postCell.profilePicture.layer.cornerRadius = postCell.profilePicture.frame.size.width/2;
-    if(post[@"author"][@"profilePicture"]) {
-        postCell.profilePicture.file = post[@"author"][@"profilePicture"];
-        [postCell.profilePicture loadInBackground];
-    } else {
-        UIImage *placeHolderImage = [UIImage imageNamed:@"image_placeholder"];
-        [postCell.profilePicture setImage:placeHolderImage];
-    }
+    NSLog(@"Loading table view cell");
+//    postCell.postCaption.text = post[@"caption"];
+//    postCell.username.text = post[@"author"][@"username"];
+//    postCell.postImage.file = post[@"image"];
+//    [postCell.postImage loadInBackground];
+//    postCell.profilePicture.layer.cornerRadius = postCell.profilePicture.frame.size.width/2;
+//    if(post[@"author"][@"profilePicture"]) {
+//        postCell.profilePicture.file = post[@"author"][@"profilePicture"];
+//        [postCell.profilePicture loadInBackground];
+//    } else {
+//        UIImage *placeHolderImage = [UIImage imageNamed:@"image_placeholder"];
+//        [postCell.profilePicture setImage:placeHolderImage];
+//    }
     return postCell;
 }
 
