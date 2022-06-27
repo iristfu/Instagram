@@ -6,6 +6,7 @@
 //
 
 #import "Post.h"
+#import "DateTools.h"
 
 @implementation Post
 
@@ -47,6 +48,23 @@
     }
     
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
+}
+
+- (NSString *) getTimeStamp {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
+    
+    NSString *createdAtString = @"";
+    NSTimeInterval secondsBetween = [[NSDate date] timeIntervalSinceDate:self.createdAt];
+    if (secondsBetween <= 3600 * 12) {
+        createdAtString = self.createdAt.timeAgoSinceNow;
+    }
+    else {
+        formatter.dateStyle = NSDateFormatterShortStyle;
+        formatter.timeStyle = NSDateFormatterNoStyle;
+        createdAtString = [formatter stringFromDate:self.createdAt];
+    }
+    return createdAtString;
 }
 
 
