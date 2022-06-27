@@ -12,7 +12,6 @@
 #import "Parse/Parse.h"
 #import "Post.h"
 #import "PostCell.h"
-#import "DetailsViewController.h"
 
 @interface HomeFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 - (IBAction)tappedLogout:(id)sender;
@@ -100,21 +99,15 @@
     }];
 }
 
-
+/*
 #pragma mark - Navigation
 
-
+// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"HomeFeedToDetailsView"]) {
-        // Get the new view controller using [segue destinationViewController].
-        DetailsViewController *detailsViewController = [segue destinationViewController];
-        
-        // Pass the selected object to the new view controller.
-        PostCell *tappedPost = sender;
-        detailsViewController.post = tappedPost.post;
-    }
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
-
+*/
 
 - (IBAction)tappedLogout:(id)sender {
     // logout the user

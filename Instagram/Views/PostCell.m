@@ -36,7 +36,6 @@
         [self.profilePicture setImage:placeHolderImage];
     }
     self.likesCount.text = [NSString stringWithFormat:@"%@ likes", post[@"likeCount"]];
-    self.timeStamp.text = [post getTimeStamp];
 }
 
 @end
