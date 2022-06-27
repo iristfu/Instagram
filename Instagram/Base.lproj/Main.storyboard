@@ -249,6 +249,7 @@
                                             <outlet property="postImage" destination="2mI-k2-M15" id="0Ck-yz-xbd"/>
                                             <outlet property="profilePicture" destination="WmJ-Yg-fP6" id="hSs-Id-f1p"/>
                                             <outlet property="username" destination="86R-46-1cE" id="Wnu-e8-W3Z"/>
+                                            <segue destination="IJD-YR-4JY" kind="show" identifier="HomeFeedToDetailsView" id="b44-cA-rcV"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -283,6 +284,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kUd-4D-7VR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1183.0769230769231" y="2287.6777251184835"/>
+        </scene>
+        <!--Details View Controller-->
+        <scene sceneID="7z8-B7-grD">
+            <objects>
+                <viewController id="IJD-YR-4JY" customClass="DetailsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zjB-4A-cSN">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="D9M-8W-Fmf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="UsM-Ve-wvC"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TH5-Eb-Lyt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-240" y="2288"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Wl-Oc-lzu">
