@@ -133,9 +133,11 @@
     [self renderImagePicker];
 }
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    NSLog(@"Beginning of collection view for index path");
     ProfileViewPostCell *cell = [self.userPostsCollectionView dequeueReusableCellWithReuseIdentifier:@"ProfileViewPostCell" forIndexPath:indexPath];
-    Post *post = self.currentUserPosts[indexPath.item]; // try .row too
+    Post *post = self.currentUserPosts[indexPath.row]; // try .row too
     cell.post = post;
+    NSLog(@"Loading a profile view post cell");
     return cell;
 }
 
