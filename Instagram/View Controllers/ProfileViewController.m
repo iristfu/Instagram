@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *username;
 @property (weak, nonatomic) IBOutlet UICollectionView *userPostsCollectionView;
 - (IBAction)didTapEditProfilePicture:(id)sender;
-@property (strong, nonatomic) NSArray *currentUserPosts;
+@property (strong, nonatomic) NSMutableArray *currentUserPosts;
 
 @end
 
@@ -38,6 +38,7 @@
 }
 
 - (void) getCurrentUserPosts {
+    NSLog(@"getCurrentUserPosts called");
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
@@ -45,20 +46,33 @@
     postQuery.limit = 20;
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post*> *_Nullable posts, NSError * _Nullable error) {
         if (posts != nil) {
-            self.currentUserPosts = posts;
+            NSLog(@"Got current user posts: %@", posts);
+            
+            for (PFObject *post in posts) {
+                [self.currentUserPosts addObject:post];
+                NSLog(@"Added to currentUserPosts for it to become: %@", self.currentUserPosts);
+            }
+            [self.userPostsCollectionView reloadData];
         } else {
             NSLog(@"There was an error getting the current user's posts: %@", error.localizedDescription);
         }
     }];
+    [self.userPostsCollectionView reloadData];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.currentUserPosts = [[NSMutableArray alloc] init];
     self.userPostsCollectionView.delegate = self;
     self.userPostsCollectionView.dataSource = self;
-    [self setCurrentUserInfo];
+    NSLog(@"About to call setting up methods");
     [self getCurrentUserPosts];
+    NSLog(@"Returning from getCurrentUserPosts");
+    [self setCurrentUserInfo];
+    NSLog(@"Returning from setCurrentUserInfo");
+    
+    
 }
 
 -(void)renderImagePicker {
@@ -134,8 +148,8 @@
 }
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     NSLog(@"Beginning of collection view for index path");
-    ProfileViewPostCell *cell = [self.userPostsCollectionView dequeueReusableCellWithReuseIdentifier:@"ProfileViewPostCell" forIndexPath:indexPath];
-    Post *post = self.currentUserPosts[indexPath.row]; // try .row too
+    ProfileViewPostCell *cell = [self.userPostsCollectionView dequeueReusableCellWithReuseIdentifier:@"ProfileViewCell" forIndexPath:indexPath];
+    Post *post = self.currentUserPosts[indexPath.row];
     cell.post = post;
     NSLog(@"Loading a profile view post cell");
     return cell;

@@ -73,6 +73,7 @@
     float scrollOffset = scrollView.contentOffset.y;
 
     if (scrollOffset + scrollViewHeight == scrollContentSizeHeight) { // at the bottom of the scrollview
+        NSLog(@"loadMorePosts going to get called");
         [self loadMorePosts];
     }
 }
@@ -90,6 +91,7 @@
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *morePosts, NSError *error) {
         if (morePosts != nil) {
+            NSLog(@"Getting more posts %@", morePosts);
             for (PFObject *post in morePosts) {
                 [self.postsOnFeed addObject:post];
             }
@@ -135,18 +137,6 @@
     PostCell *postCell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
     postCell.post = post;
     NSLog(@"Loading table view cell");
-//    postCell.postCaption.text = post[@"caption"];
-//    postCell.username.text = post[@"author"][@"username"];
-//    postCell.postImage.file = post[@"image"];
-//    [postCell.postImage loadInBackground];
-//    postCell.profilePicture.layer.cornerRadius = postCell.profilePicture.frame.size.width/2;
-//    if(post[@"author"][@"profilePicture"]) {
-//        postCell.profilePicture.file = post[@"author"][@"profilePicture"];
-//        [postCell.profilePicture loadInBackground];
-//    } else {
-//        UIImage *placeHolderImage = [UIImage imageNamed:@"image_placeholder"];
-//        [postCell.profilePicture setImage:placeHolderImage];
-//    }
     return postCell;
 }
 
