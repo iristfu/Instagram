@@ -13,6 +13,7 @@
 #import "Post.h"
 #import "PostCell.h"
 #import "DetailsViewController.h"
+#import "ProfileViewController.h"
 
 @interface HomeFeedViewController () <UITableViewDelegate, UITableViewDataSource>
 - (IBAction)tappedLogout:(id)sender;
@@ -103,6 +104,12 @@
 }
 
 
+- (void)postCell:(PostCell *)postCell didTap:(Post *)post {
+    // Perform segue to profile view controller
+    [self performSegueWithIdentifier:@"FeedToProfileViewSegue" sender:post];
+}
+
+
 #pragma mark - Navigation
 
 
@@ -114,6 +121,9 @@
         // Pass the selected object to the new view controller.
         PostCell *tappedPost = sender;
         detailsViewController.post = tappedPost.post;
+    } else if ([segue.identifier isEqualToString:@"FeedToProfileViewSegue"]) {
+        ProfileViewController *profileViewcontroller = [segue destinationViewController];
+        
     }
 }
 

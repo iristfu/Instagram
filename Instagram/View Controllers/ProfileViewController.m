@@ -24,7 +24,8 @@
 @implementation ProfileViewController
 
 - (void)setCurrentUserInfo {
-    PFUser *currentUser = [PFUser currentUser];
+//    PFUser *currentUser = [PFUser currentUser];
+    PFUser *currentUser = self.user;
     self.username.text = currentUser.username;
     
     NSLog(@"Setting current user info");
@@ -42,7 +43,7 @@
     PFQuery *postQuery = [Post query];
     [postQuery orderByDescending:@"createdAt"];
     [postQuery includeKey:@"author"];
-    [postQuery whereKey:@"author" equalTo:[PFUser currentUser]];
+    [postQuery whereKey:@"author" equalTo:self.user];
     postQuery.limit = 20;
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray<Post*> *_Nullable posts, NSError * _Nullable error) {
         if (posts != nil) {
@@ -66,6 +67,10 @@
     self.currentUserPosts = [[NSMutableArray alloc] init];
     self.userPostsCollectionView.delegate = self;
     self.userPostsCollectionView.dataSource = self;
+    
+    if (!self.user) {
+        self.user = [PFUser currentUser];
+    }
     NSLog(@"About to call setting up methods");
     [self getCurrentUserPosts];
     NSLog(@"Returning from getCurrentUserPosts");

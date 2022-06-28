@@ -9,6 +9,8 @@
 
 @implementation PostCell
 
+
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

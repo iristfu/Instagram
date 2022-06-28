@@ -290,6 +290,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="homeFeedTableView" destination="gO1-Nf-LwB" id="qhe-sh-fbn"/>
+                        <segue destination="p4i-Bu-co0" kind="show" identifier="FeedToProfileViewSegue" id="j7w-AV-KDa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kUd-4D-7VR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -607,6 +608,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="j7w-AV-KDa"/>
         <segue reference="faQ-w1-Ht5"/>
     </inferredMetricsTieBreakers>
     <resources>

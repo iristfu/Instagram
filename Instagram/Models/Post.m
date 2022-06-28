@@ -29,7 +29,6 @@
     newPost.author = [PFUser currentUser];
     newPost.caption = caption;
     newPost.likeCount = @(0);
-    newPost.commentCount = @(0);
     
     [newPost saveInBackgroundWithBlock: completion];
 }
