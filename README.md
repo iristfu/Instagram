@@ -50,7 +50,7 @@ Here's a walkthrough of implemented user stories:
 <img src='https://github.com/iristfu/Instagram/blob/user-profile/Instagram/full-demo.MOV' title='Video Walkthrough' width='200' alt='Video Walkthrough' />
 
 **Home timeline, details view, profile page, user persistence with logout**
-<img src='https://drive.google.com/file/d/1tPAR8HAssoRlzhP7Z-2TS88ZgkraBzVe/view?usp=sharing' title='Video Walkthrough' width='200' alt='Video Walkthrough' />
+https://drive.google.com/file/d/1tPAR8HAssoRlzhP7Z-2TS88ZgkraBzVe/view?usp=sharing
 
 **Upload profile photo, post photo, display profile photo with user posts, timeline refresh**
 
